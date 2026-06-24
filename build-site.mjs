@@ -89,15 +89,11 @@ code { background:var(--surface2); padding:2px 5px; border-radius:5px; font-size
   padding:4px 12px; border-radius:999px; font-size:.85em; font-weight:600; margin-top:10px; }
 .grid { max-width:820px; margin:24px auto 50px; padding:0 20px; display:grid;
   grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:14px; }
-.card { border:1px solid var(--line); border-radius:14px; background:var(--surface);
+.card { display:block; text-decoration:none; border:1px solid var(--line); border-radius:14px; background:var(--surface);
   padding:20px 16px; text-align:center; transition:transform .08s ease, box-shadow .12s ease, border-color .12s; }
 .card:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(16,24,40,.10); border-color:var(--accent); }
-.card-main { display:block; text-decoration:none; }
 .card .lang { font-size:1.5em; font-weight:700; color:var(--ink); }
 .card .en { color:var(--muted); font-size:.9em; margin-top:4px; }
-.card-pdf { display:inline-block; margin-top:12px; font-size:12px; text-decoration:none; color:var(--muted);
-  border:1px solid var(--line); border-radius:999px; padding:3px 11px; }
-.card-pdf:hover { color:var(--accent); border-color:var(--accent); }
 
 /* footers */
 .foot { text-align:center; color:var(--muted); font-size:.85em; padding:22px 20px; border-top:1px solid var(--line); }
@@ -181,7 +177,7 @@ ${THEME_INIT}
 
 function indexHtml() {
   const cards = LANGS.map(
-    (l) => `  <div class="card"><a class="card-main" href="${l.code}.html"><div class="lang">${l.native}</div><div class="en">${l.en}</div></a><a class="card-pdf" href="pdfs/${l.code}.pdf" download>⬇ PDF</a></div>`
+    (l) => `  <a class="card" href="${l.code}.html"><div class="lang">${l.native}</div><div class="en">${l.en}</div></a>`
   ).join('\n');
   return `<!doctype html>
 <html lang="en">
