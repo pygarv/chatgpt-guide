@@ -1,5 +1,5 @@
 # A Basic ChatGPT Guide
-## For First-Time Users
+## Beginner-Friendly ChatGPT — Simple Tips to Help in Everyday Life
 
 *Your friendly handbook for using ChatGPT on your phone — written for first-time users, in plain language.*
 

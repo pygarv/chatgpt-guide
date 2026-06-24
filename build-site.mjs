@@ -189,7 +189,7 @@ ${THEME_HEAD}
 ${themeBtn(true)}
 <section class="hero">
   <h1>A Basic ChatGPT Guide</h1>
-  <p>A simple, friendly guide to using ChatGPT on your phone — written for first-time users. Choose your language to begin.</p>
+  <p>A beginner-friendly guide to using ChatGPT on your phone — with simple tips to help in everyday life. Choose your language to begin.</p>
   <span class="badge">100% Free • No experience needed</span>
 </section>
 <nav class="grid">
