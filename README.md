@@ -1,5 +1,5 @@
 # A Basic ChatGPT Guide — in Your Language
-
+ 
 A simple, beginner-friendly guide to using **ChatGPT** on a phone — written for first-time users and people who aren't comfortable with English or technology. It walks through everything from installing the app to using voice and camera, with real everyday examples (cooking, health, farming, budgets, government forms, small business, and more).
 
 Free to read, download, and share.
