@@ -56,7 +56,7 @@ Built by **Garv Sachdeva**.
 
 This project was created with the help of:
 
-- **[Claude](https://www.anthropic.com/claude) (Anthropic)** — used via **[Claude Code](https://www.anthropic.com/claude-code)** to write and translate all 9 language guides, build the website and PDF tooling, and organise the repo.
+- **[Claude](https://www.anthropic.com/claude) (Anthropic)** — to write and translate all 9 language guides, build the website and PDF tooling, and organise the repo.
 - **[ChatGPT](https://chatgpt.com/) / OpenAI** — the product this guide teaches people to use.
 - **[marked](https://marked.js.org/)** — Markdown → HTML rendering.
 - **[Puppeteer](https://pptr.dev/)** + **Google Chrome (headless)** — rendering the PDFs.
