@@ -1,5 +1,5 @@
-# ChatGPT Made Easy
-## A Simple Guide for Everyone
+# A Basic ChatGPT Guide
+## For First-Time Users
 
 *Your friendly handbook for using ChatGPT on your phone — written for first-time users, in plain language.*
 

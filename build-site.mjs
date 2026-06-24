@@ -79,7 +79,7 @@ code { background:#f2f4f7; padding:2px 5px; border-radius:5px; font-size:.92em; 
 function preprocess(md) {
   // [SCREENSHOT: desc] -> styled placeholder (skip if an image is already inline)
   md = md.replace(/\[SCREENSHOT:\s*([^\]]+)\]/g, (_, d) => {
-    const safe = d.trim().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const safe = d.trim().replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
     return `<div class="shot">${safe}</div>`;
   });
   // drop the "— page N" tail from TOC list lines (page numbers are meaningless on a scrolling web page)
@@ -125,12 +125,12 @@ function indexHtml() {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ChatGPT Made Easy — A Simple Guide in Your Language</title>
+<title>A Basic ChatGPT Guide — in Your Language</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <section class="hero">
-  <h1>ChatGPT Made Easy</h1>
+  <h1>A Basic ChatGPT Guide</h1>
   <p>A simple, friendly guide to using ChatGPT on your phone — written for first-time users. Choose your language to begin.</p>
   <span class="badge">100% Free • No experience needed</span>
 </section>
