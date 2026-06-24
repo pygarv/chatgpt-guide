@@ -4,7 +4,7 @@ A simple, beginner-friendly guide to using **ChatGPT** on a phone — written fo
 
 Free to read, download, and share.
 
-🌐 **Read it online:** https://garviiii.github.io/chatgpt-guide/
+🌐 **Read it online:** https://pygarv.github.io/chatgpt-guide/
 
 ## Available in 9 languages
 
