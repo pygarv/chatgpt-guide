@@ -4,9 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>A Basic ChatGPT Guide — in Your Language</title>
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();
+function toggleTheme(){var d=document.documentElement;var t=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=t;try{localStorage.setItem('theme',t);}catch(e){}var b=document.getElementById('themeBtn');if(b)b.textContent=t==='dark'?'☀️':'🌙';}
+</script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<button id="themeBtn" class="theme floating" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
 <section class="hero">
   <h1>A Basic ChatGPT Guide</h1>
   <p>A simple, friendly guide to using ChatGPT on your phone — written for first-time users. Choose your language to begin.</p>
@@ -22,6 +27,10 @@
   <a class="card" href="punjabi.html"><div class="lang">ਪੰਜਾਬੀ</div><div class="en">Punjabi</div></a>
   <a class="card" href="odia.html"><div class="lang">ଓଡ଼ିଆ</div><div class="en">Odia</div></a>
 </nav>
-<div class="foot">Made for everyone. ChatGPT is a product of OpenAI. • Free to read & share.</div>
+<div class="foot">
+  <p><span class="credit">Made with ❤️ by Garv Sachdeva</span></p>
+  <p>ChatGPT is a product of OpenAI. • Free to read &amp; share.</p>
+</div>
+<script>document.getElementById('themeBtn').textContent=document.documentElement.dataset.theme==='dark'?'☀️':'🌙';</script>
 </body>
 </html>

@@ -3,7 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ChatGPT Guide — ಕನ್ನಡ</title>
+<title>A Basic ChatGPT Guide — ಕನ್ನಡ</title>
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();
+function toggleTheme(){var d=document.documentElement;var t=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=t;try{localStorage.setItem('theme',t);}catch(e){}var b=document.getElementById('themeBtn');if(b)b.textContent=t==='dark'?'☀️':'🌙';}
+</script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,6 +15,7 @@
   <a class="home" href="index.html">🏠 Home</a>
   <span class="spacer"></span>
   <select onchange="if(this.value)location.href=this.value" aria-label="Choose language"><option value="english.html">English — English</option><option value="hindi.html">हिंदी — Hindi</option><option value="tamil.html">தமிழ் — Tamil</option><option value="telugu.html">తెలుగు — Telugu</option><option value="kannada.html" selected>ಕನ್ನಡ — Kannada</option><option value="marathi.html">मराठी — Marathi</option><option value="punjabi.html">ਪੰਜਾਬੀ — Punjabi</option><option value="odia.html">ଓଡ଼ିଆ — Odia</option></select>
+  <button id="themeBtn" class="theme" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
 </div>
 <main class="wrap">
 <h1>ಒಂದು ಮೂಲ ChatGPT ಮಾರ್ಗದರ್ಶಿ</h1>
@@ -1401,5 +1406,7 @@ b) ಶುಭೋದಯ!</p>
 <p><em>ಈ ಮಾರ್ಗದರ್ಶಿ ಶೈಕ್ಷಣಿಕ ಉದ್ದೇಶಗಳಿಗಾಗಿ. ChatGPT, OpenAI ನ ಒಂದು ಉತ್ಪನ್ನ. ಆ್ಯಪ್‌ನ ರೂಪ ಕಾಲಕ್ರಮೇಣ ಬದಲಾಗಬಹುದು; ಹೆಜ್ಜೆಗಳು ಬರೆಯುವ ಸಮಯದಲ್ಲಿ ನಿಖರವಾಗಿವೆ. ಯಾವಾಗಲೂ ಸ್ಕ್ರೀನ್ ಮೇಲಿನ ಸೂಚನೆಗಳು ಮತ್ತು ಅಧಿಕೃತ ಮೂಲಗಳನ್ನು ಅನುಸರಿಸಿ.</em></p>
 
 </main>
+<footer class="page-foot"><span class="credit">Made with ❤️ by Garv Sachdeva</span></footer>
+<script>document.getElementById('themeBtn').textContent=document.documentElement.dataset.theme==='dark'?'☀️':'🌙';</script>
 </body>
 </html>

@@ -3,7 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ChatGPT Guide — తెలుగు</title>
+<title>A Basic ChatGPT Guide — తెలుగు</title>
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();
+function toggleTheme(){var d=document.documentElement;var t=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=t;try{localStorage.setItem('theme',t);}catch(e){}var b=document.getElementById('themeBtn');if(b)b.textContent=t==='dark'?'☀️':'🌙';}
+</script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,6 +15,7 @@
   <a class="home" href="index.html">🏠 Home</a>
   <span class="spacer"></span>
   <select onchange="if(this.value)location.href=this.value" aria-label="Choose language"><option value="english.html">English — English</option><option value="hindi.html">हिंदी — Hindi</option><option value="tamil.html">தமிழ் — Tamil</option><option value="telugu.html" selected>తెలుగు — Telugu</option><option value="kannada.html">ಕನ್ನಡ — Kannada</option><option value="marathi.html">मराठी — Marathi</option><option value="punjabi.html">ਪੰਜਾਬੀ — Punjabi</option><option value="odia.html">ଓଡ଼ିଆ — Odia</option></select>
+  <button id="themeBtn" class="theme" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
 </div>
 <main class="wrap">
 <h1>ఒక బేసిక్ ChatGPT గైడ్</h1>
@@ -1400,5 +1405,7 @@ b) శుభోదయం!</p>
 <p><em>ఈ గైడ్ విద్యా ప్రయోజనాల కోసం ఉద్దేశించబడింది. ChatGPT అనేది OpenAI యొక్క ఉత్పత్తి. యాప్ ఇంటర్‌ఫేస్‌లు కాలక్రమేణా మారవచ్చు; అడుగులు రాసిన సమయంలో ఖచ్చితమైనవి. ఎల్లప్పుడూ స్క్రీన్‌పై ఉన్న సూచనలను మరియు అధికారిక మూలాలను అనుసరించండి.</em></p>
 
 </main>
+<footer class="page-foot"><span class="credit">Made with ❤️ by Garv Sachdeva</span></footer>
+<script>document.getElementById('themeBtn').textContent=document.documentElement.dataset.theme==='dark'?'☀️':'🌙';</script>
 </body>
 </html>
