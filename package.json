@@ -1,0 +1,12 @@
+{
+  "name": "chatgpt-guide-site",
+  "version": "1.0.0",
+  "description": "Multilingual ChatGPT beginner's guide — static site + source markdown",
+  "type": "module",
+  "scripts": {
+    "build": "node build-site.mjs"
+  },
+  "dependencies": {
+    "marked": "^18.0.5"
+  }
+}

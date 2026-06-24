@@ -1,0 +1,7 @@
+node_modules/
+**/node_modules/
+*.pdf
+*.toc-fixed.md
+.DS_Store
+ChatGPT-Education in India discussion.md
+blank.txt
