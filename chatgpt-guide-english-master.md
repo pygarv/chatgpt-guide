@@ -3,8 +3,6 @@
 
 *Your friendly handbook for using ChatGPT on your phone — written for first-time users, in plain language.*
 
-**Master Edition (English)** — This is the base guide. It will be translated into Hindi, Bengali, Marathi, Telugu, Tamil, Gujarati, Urdu, Kannada, Odia, and Punjabi.
-
 ---
 <div class="page-break"></div>
 
