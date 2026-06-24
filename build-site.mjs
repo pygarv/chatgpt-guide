@@ -56,7 +56,8 @@ body { margin:0; color:var(--ink); background:var(--bg);
 
 /* content */
 .wrap { max-width:820px; margin:0 auto; padding:24px 20px 40px; }
-.wrap img { max-width:100%; height:auto; border-radius:8px; border:1px solid var(--line); }
+.wrap img { display:block; width:100%; max-width:300px; height:auto; margin:18px auto;
+  border-radius:12px; border:1px solid var(--line); box-shadow:0 2px 10px rgba(16,24,40,.08); }
 h1 { font-size:1.9em; line-height:1.25; margin:1.4em 0 .5em; color:var(--ink); }
 h1:first-child { margin-top:.2em; }
 h2 { font-size:1.4em; margin:1.3em 0 .4em; color:var(--ink); }
@@ -217,4 +218,19 @@ for (const lang of LANGS) {
 fs.writeFileSync(path.join(OUT, 'index.html'), indexHtml());
 fs.writeFileSync(path.join(OUT, 'style.css'), CSS.trim() + '\n');
 fs.writeFileSync(path.join(OUT, '.nojekyll'), ''); // tell GitHub Pages to serve files as-is
+
+// copy assets into docs/ so GitHub Pages (which serves only docs/) can reach the images.
+// md image paths are "assets/screenshots/..." → resolve relative to each docs/*.html page.
+const assetsSrc = path.join(ROOT, 'assets');
+const assetsDst = path.join(OUT, 'assets');
+if (fs.existsSync(assetsSrc)) {
+  fs.rmSync(assetsDst, { recursive: true, force: true });
+  fs.cpSync(assetsSrc, assetsDst, { recursive: true });
+  // drop stray macOS metadata files
+  for (const p of fs.readdirSync(path.join(assetsDst, 'screenshots'), { withFileTypes: true })) {
+    if (p.name === '.DS_Store' || p.name === 'README.txt') fs.rmSync(path.join(assetsDst, 'screenshots', p.name));
+  }
+  const n = fs.readdirSync(path.join(assetsDst, 'screenshots')).length;
+  console.log(`copied assets → docs/assets (${n} files in screenshots/)`);
+}
 console.log(`built docs/index.html + style.css  (${built} language pages)`);
