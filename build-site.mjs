@@ -7,6 +7,7 @@ import { marked } from 'marked';
 const LANGS = [
   { code: 'english', native: 'English',   en: 'English',  file: 'chatgpt-guide-english-master.md' },
   { code: 'hindi',   native: 'हिंदी',      en: 'Hindi',    file: 'chatgpt-guide-hindi.md' },
+  { code: 'bengali', native: 'বাংলা',      en: 'Bengali',  file: 'chatgpt-guide-bengali.md' },
   { code: 'tamil',   native: 'தமிழ்',      en: 'Tamil',    file: 'chatgpt-guide-tamil.md' },
   { code: 'telugu',  native: 'తెలుగు',     en: 'Telugu',   file: 'chatgpt-guide-telugu.md' },
   { code: 'kannada', native: 'ಕನ್ನಡ',      en: 'Kannada',  file: 'chatgpt-guide-kannada.md' },
