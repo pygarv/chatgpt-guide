@@ -74,11 +74,69 @@ function mdToHtml(md) {
 <style>${CSS}</style></head><body>${body}${credit}</body></html>`;
 }
 
+// Runs in the browser. Simulates the real paginated flow top-to-bottom so each image's
+// true position on its page is known, then shrinks an image to fill the leftover space on
+// its current page (instead of jumping to the next and leaving a blank gap) — but only when
+// at least MIN_REMAIN of the page is still free; otherwise let it flow to the next page.
+//
+// getBoundingClientRect is continuous (ignores page breaks), so we walk every top-level
+// block and reproduce what Chrome does: snap to a new page at forced breaks (h1, the block
+// after a .page-break) AND at break-inside:avoid blocks (img/table/blockquote/pre) that
+// don't fit the space left on the current page. Modelling those avoid-pushes is the key fix
+// — without them every position below the first pushed image is wrong.
+function fitImages({ PAGE_H, MIN_REMAIN, MARGIN }) {
+  const ceilPage = (y) => Math.ceil(y / PAGE_H) * PAGE_H;
+  const isImgBlock = (el) => el.tagName === 'IMG' || el.querySelector('img');
+  const avoids = (el) => isImgBlock(el) || /^(BLOCKQUOTE|TABLE|PRE)$/.test(el.tagName);
+
+  let shrunk = 0;
+  for (let pass = 0; pass < 8; pass++) {
+    const blocks = [...document.body.children];
+    const tops = blocks.map((b) => b.getBoundingClientRect().top + window.scrollY);
+    // continuous footprint of each block incl. collapsed margin = distance to next block's top
+    const adv = blocks.map((b, i) =>
+      i < blocks.length - 1 ? tops[i + 1] - tops[i] : b.getBoundingClientRect().height + MARGIN);
+
+    let firstH1 = blocks.findIndex((b) => b.tagName === 'H1');
+    let offset = 0;          // accumulated push (forced breaks + avoid pushes)
+    let changed = false;
+
+    for (let i = 0; i < blocks.length; i++) {
+      const b = blocks[i];
+      let realTop = tops[i] + offset;
+
+      // forced break before: every h1 except the first, and the block right after a .page-break
+      const forced = (b.tagName === 'H1' && i !== firstH1) ||
+                     (i > 0 && blocks[i - 1].classList.contains('page-break'));
+      if (forced) { const nt = ceilPage(realTop); offset += nt - realTop; realTop = nt; }
+
+      const h = adv[i];
+      const remaining = PAGE_H - (realTop % PAGE_H);
+      if (avoids(b) && h > remaining && h <= PAGE_H) {
+        // Chrome would push this block to the next page, leaving `remaining` blank.
+        const img = b.tagName === 'IMG' ? b : b.querySelector('img');
+        if (img && remaining >= PAGE_H * MIN_REMAIN) {
+          // enough space free -> shrink the image to fill it instead of pushing
+          const target = remaining - MARGIN;
+          const cur = parseFloat(img.style.maxHeight) || Infinity;
+          if (target < cur - 1) { img.style.maxHeight = target + 'px'; img.style.width = 'auto'; shrunk++; changed = true; }
+          // (positions below recompute next pass from updated layout)
+        } else {
+          const nt = ceilPage(realTop); offset += nt - realTop; realTop = nt;
+        }
+      }
+    }
+    if (!changed) break;
+  }
+  return shrunk;
+}
+
 const browser = await puppeteer.launch({ executablePath: CHROME, headless: 'new', args: ['--no-sandbox'] });
 for (const lang of targets) {
   const md = fs.readFileSync(path.join(ROOT, lang.file), 'utf8');
   const page = await browser.newPage();
   await page.setContent(mdToHtml(md), { waitUntil: 'load', timeout: 0 });
+  const shrunk = await page.evaluate(fitImages, { PAGE_H: 994, MIN_REMAIN: 0.4, MARGIN: 32 });
   await page.pdf({
     path: path.join(OUT, `${lang.code}.pdf`),
     format: 'A4', printBackground: true, displayHeaderFooter: true,
@@ -88,7 +146,7 @@ for (const lang of targets) {
   });
   await page.close();
   const kb = Math.round(fs.statSync(path.join(OUT, `${lang.code}.pdf`)).size / 1024);
-  console.log(`${lang.code}.pdf  (${kb} KB)`);
+  console.log(`${lang.code}.pdf  (${kb} KB, ${shrunk} image(s) fitted)`);
 }
 await browser.close();
 console.log(`\nwrote ${targets.length} PDF(s) to pdfs/`);
