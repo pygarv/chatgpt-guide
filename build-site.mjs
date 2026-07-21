@@ -275,7 +275,7 @@ function preprocess(md) {
 }
 
 function bodyToHtml(md) {
-  md = md.replace(/<div class="page-break">\s*<\/div>/g, '').replace(/^\s*---\s*$/gm, '');
+  md = md.replace(/<div class="page-break">\s*<\/div>/g, '').replace(/^[ \t]*---[ \t]*\r?$/gm, '');
   let h = marked.parse(md, { mangle: false, headerIds: true });
   return h.replaceAll('<img ', '<img loading="lazy" '); // hidden chapters don't fetch until opened
 }
